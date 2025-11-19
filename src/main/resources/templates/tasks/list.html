@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>タスク一覧</title>
+</head>
+<body>
+
+<h1>タスク一覧</h1>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>タスク名</th>
+        <th>担当者</th>
+        <th>期限</th>
+        <th>状態</th>
+        <th>作業時間</th>
+    </tr>
+
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.title}"></td>
+        <td th:text="${task.assignee.name}"></td>
+        <td th:text="${task.dueDate}"></td>
+        <td th:text="${task.status}"></td>
+        <td th:text="${task.workHours}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -20,3 +20,8 @@ CREATE TABLE tasks (
         FOREIGN KEY (assignee_id) REFERENCES members(id)
 );
 
+INSERT INTO members (id, name, email, active) VALUES
+(1, '山田 太郎', 'taro@example.com', TRUE),
+(2, '佐藤 花子', 'hanako@example.com', TRUE),
+(3, '中村 一郎', 'ichiro@example.com', TRUE);
+
