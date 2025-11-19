@@ -18,6 +18,8 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,7 +28,9 @@ import lombok.Setter;
 @Table(name = "tasks")
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Task {
 
 	
@@ -42,7 +46,7 @@ public class Task {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "assigned_member_id", nullable = false)
-	private Member asiignee;
+	private Member assignee;
 	
 	private LocalDate dueDate;
 	

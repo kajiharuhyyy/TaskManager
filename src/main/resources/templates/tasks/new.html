@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>タスク登録</title>
+</head>
+<body>
+
+<h1>タスク登録</h1>
+
+<form th:action="@{/tasks}" th:object="${taskForm}" method="post">
+
+    <div>
+        <label>タスク名：</label>
+        <input type="text" th:field="*{title}" />
+    </div>
+
+    <div>
+        <label>担当者：</label>
+        <select th:field="*{assigneeId}">
+            <option th:each="m : ${members}"
+                    th:value="${m.id}"
+                    th:text="${m.name}"></option>
+        </select>
+    </div>
+
+    <div>
+        <label>期限：</label>
+        <input type="date" th:field="*{dueDate}" />
+    </div>
+
+    <div>
+        <label>状態：</label>
+        <select th:field="*{status}">
+            <option th:each="s : ${statuses}"
+                    th:value="${s}"
+                    th:text="${s}"></option>
+        </select>
+    </div>
+
+    <div>
+        <label>作業時間（h）：</label>
+        <input type="number" step="0.1" th:field="*{workHours}" />
+    </div>
+
+    <div>
+        <button type="submit">登録する</button>
+        <a th:href="@{/tasks}">戻る</a>
+    </div>
+
+</form>
+
+</body>
+</html>
