@@ -30,7 +30,7 @@ public class TaskController {
 	
 	@GetMapping("/tasks/new")
 	public String newTaskForm(Model model) {
-		model.addAttribute("taskForm, new TaskForm()");
+		model.addAttribute("taskForm", new TaskForm());
 		model.addAttribute("members", memberRepository.findAll());
 		model.addAttribute("statuses", TaskStatus.values());
 		return "tasks/new";

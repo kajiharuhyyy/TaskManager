@@ -45,7 +45,7 @@ public class Task {
 	private String description;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "assigned_member_id", nullable = false)
+	@JoinColumn(name = "assignee_id", nullable = false)
 	private Member assignee;
 	
 	private LocalDate dueDate;
