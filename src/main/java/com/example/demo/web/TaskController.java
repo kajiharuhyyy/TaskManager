@@ -1,7 +1,10 @@
 package com.example.demo.web;
 
+import jakarta.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +41,15 @@ public class TaskController {
 	}
 	
 	@PostMapping("/tasks")
-	public String createTask(@ModelAttribute TaskForm taskForm) {
+	public String createTask(@ModelAttribute @Valid TaskForm taskForm,
+			BindingResult bindingResult,
+			Model model) {
+		
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("members", memberRepository.findAll());
+			model.addAttribute("statuses", TaskStatus.values());
+			return "tasks/new";
+		}
 		
 		Member assignee = memberRepository.findById(taskForm.getAssigneeId())
 				.orElseThrow(() -> new IllegalArgumentException("Invalid member ID"));
@@ -87,7 +98,17 @@ public class TaskController {
 		}
 	
 	@PostMapping("/tasks/{id}/edit")
-	public String updateTask(@PathVariable Long id, @ModelAttribute TaskForm taskForm) {
+	public String updateTask(@PathVariable Long id, 
+								@ModelAttribute @Valid TaskForm taskForm,
+								BindingResult bindingResult,
+								Model model) {
+		
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("members", memberRepository.findAll());
+			model.addAttribute("statuses", TaskStatus.values());
+			return "tasks/edit";
+		}
+	
 		Task task = taskRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid task ID: " + id));
 		
