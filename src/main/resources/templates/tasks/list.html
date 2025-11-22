@@ -26,7 +26,18 @@
         <td th:text="${task.status}"></td>
         <td th:text="${task.workHours}"></td>
 		<td>
+			<a th:href="@{/tasks/{id}(id=${task.id})}">詳細</a>
+		</td>
+		<td>
 			<a th:href="@{/tasks/{id}/edit(id=${task.id})}">編集</a>
+		</td>
+		<td>
+			<form th:action="@{/tasks/{id}/delete(id=${task.id})}" 
+			method="post" 
+			style="display:inline;">
+                <button type="submit" 
+					onclick="return confirm('本当に削除しますか？');">削除</button>
+            </form>
 		</td>
     </tr>
 </table>

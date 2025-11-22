@@ -76,6 +76,16 @@ public class TaskController {
 		return "tasks/edit";
 	}
 	
+	@GetMapping("/tasks/{id}")
+	public String showTask(@PathVariable Long id, Model model) {
+		Task task = taskRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid task ID: " + id));
+		
+		model.addAttribute("task", task);
+		
+		return "tasks/show";
+		}
+	
 	@PostMapping("/tasks/{id}/edit")
 	public String updateTask(@PathVariable Long id, @ModelAttribute TaskForm taskForm) {
 		Task task = taskRepository.findById(id)
@@ -92,7 +102,17 @@ public class TaskController {
 		
 		taskRepository.save(task);
 		
-		System.out.println("★★ updateTask 呼ばれた id=" + id);
+		return "redirect:/tasks";
+	}
+	
+	@PostMapping("/tasks/{id}/delete")
+	public String deleteTask(@PathVariable Long id) {
+		taskRepository.findById(id)
+			.orElseThrow(() -> new IllegalArgumentException("Invalid task ID: " + id));
+		
+		taskRepository.deleteById(id);
+		
+		System.out.println("** deletedTask 呼ばれたid=" + id);
 		
 		return "redirect:/tasks";
 	}

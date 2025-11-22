@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>タスク詳細</title>
+</head>
+<body>
+	
+	<h1>タスク詳細</h1>
+	
+	<table border="1">
+        <tr>
+            <th>ID</th>
+            <td th:text="${task.id}"></td>
+        </tr>
+        <tr>
+            <th>タスク名</th>
+            <td th:text="${task.title}"></td>
+        </tr>
+        <tr>
+            <th>担当者</th>
+            <td th:text="${task.assignee.name}"></td>
+        </tr>
+        <tr>
+            <th>期限</th>
+            <td th:text="${task.dueDate}"></td>
+        </tr>
+        <tr>
+            <th>状態</th>
+            <td th:text="${task.status}"></td>
+        </tr>
+        <tr>
+            <th>作業時間</th>
+            <td th:text="${task.workHours}"></td>
+        </tr>
+		<tr>
+			<th>作業日時</th>
+			<td th:text="${task.createdAt}"></td>
+		</tr>
+		<tr>
+			<th>更新日時</th>
+            <td th:text="${task.updatedAt}"></td>
+		</tr>
+    </table>
+	
+	<div style="margin-top:16px;">
+        <a th:href="@{/tasks}">戻る</a>
+        <a th:href="@{/tasks/{id}/edit(id=${task.id})}">編集</a>
+		
+	</div>
+	
+	</body>
+	</html>
