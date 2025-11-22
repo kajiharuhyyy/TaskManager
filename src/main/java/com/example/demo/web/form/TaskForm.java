@@ -7,6 +7,8 @@ import lombok.Data;
 
 @Data
 public class TaskForm {
+	
+	private Long id;
 
 	private String title;
 	private Long assigneeId;

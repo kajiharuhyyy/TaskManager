@@ -25,6 +25,9 @@
         <td th:text="${task.dueDate}"></td>
         <td th:text="${task.status}"></td>
         <td th:text="${task.workHours}"></td>
+		<td>
+			<a th:href="@{/tasks/{id}/edit(id=${task.id})}">編集</a>
+		</td>
     </tr>
 </table>
 

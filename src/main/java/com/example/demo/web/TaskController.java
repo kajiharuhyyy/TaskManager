@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.domain.Member;
@@ -52,6 +53,47 @@ public class TaskController {
 		
 		taskRepository.save(task);
 		// Implementation for creating a new task
+		return "redirect:/tasks";
+	}
+	
+	@GetMapping("/tasks/{id}/edit")
+	public String editTaskForm(@PathVariable Long id, Model model) {
+		Task task = taskRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid task ID"));
+		
+		TaskForm form = new TaskForm();
+		form.setId(task.getId());
+		form.setTitle(task.getTitle());
+		form.setAssigneeId(task.getAssignee().getId());
+		form.setDueDate(task.getDueDate());
+		form.setStatus(task.getStatus().name());
+		form.setWorkHours(task.getWorkHours());
+		
+		model.addAttribute("taskForm", form);
+		model.addAttribute("members", memberRepository.findAll());
+		model.addAttribute("statuses", TaskStatus.values());
+		
+		return "tasks/edit";
+	}
+	
+	@PostMapping("/tasks/{id}/edit")
+	public String updateTask(@PathVariable Long id, @ModelAttribute TaskForm taskForm) {
+		Task task = taskRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid task ID: " + id));
+		
+		Member assignee = memberRepository.findById(taskForm.getAssigneeId())
+				.orElseThrow(() -> new IllegalArgumentException("Invalid member ID"));
+		
+		task.setTitle(taskForm.getTitle());
+		task.setAssignee(assignee);
+		task.setDueDate(taskForm.getDueDate());
+		task.setStatus(TaskStatus.valueOf(taskForm.getStatus()));
+		task.setWorkHours(taskForm.getWorkHours());
+		
+		taskRepository.save(task);
+		
+		System.out.println("★★ updateTask 呼ばれた id=" + id);
+		
 		return "redirect:/tasks";
 	}
 }
