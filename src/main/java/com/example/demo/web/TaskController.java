@@ -19,14 +19,14 @@ import com.example.demo.web.form.TaskForm;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
-@RequiredArgsConstructor
+@Controller //HTTPリクエストを受け取って、画面(HTML)を返すクラス
+@RequiredArgsConstructor //finalなフィールドを引数に持つコンストラクタを自動生成
 public class TaskController {
 
 	private final TaskRepository taskRepository;
 	private final MemberRepository memberRepository;
 	
-	@GetMapping("/tasks")
+	@GetMapping("/tasks") // /tasksへのGETリクエストを処理するメソッド
 	public String listTasks(Model model) {
 		model.addAttribute("tasks", taskRepository.findAll());
 		return "tasks/list";
@@ -41,13 +41,14 @@ public class TaskController {
 	}
 	
 	@PostMapping("/tasks")
-	public String createTask(@ModelAttribute @Valid TaskForm taskForm,
+	public String createTask(@ModelAttribute //フォームの入力値を Java のオブジェクトに自動で詰める仕組み
+			@Valid TaskForm taskForm, //バリデーションを実行
 			BindingResult bindingResult,
 			Model model) {
 		
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("members", memberRepository.findAll());
-			model.addAttribute("statuses", TaskStatus.values());
+			model.addAttribute("members", memberRepository.findAll()); //再表示のためにメンバーリストを追加
+			model.addAttribute("statuses", TaskStatus.values()); //再表示のためにステータスリストを追加
 			return "tasks/new";
 		}
 		
@@ -68,7 +69,8 @@ public class TaskController {
 	}
 	
 	@GetMapping("/tasks/{id}/edit")
-	public String editTaskForm(@PathVariable Long id, Model model) {
+	public String editTaskForm(@PathVariable Long id, //URL に埋め込まれた {id} を受け取る
+			Model model) {
 		Task task = taskRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid task ID"));
 		
