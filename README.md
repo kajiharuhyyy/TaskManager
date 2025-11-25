@@ -1,4 +1,7 @@
 # TaskManager　— タスク管理ミニアプリ
+![Java](https://img.shields.io/badge/Java-17-orange)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.7-brightgreen)
+
 
 ## はじめに
 TaskManager は、社内メンバー向けのシンプルなタスク管理アプリです。
@@ -6,7 +9,7 @@ TaskManager は、社内メンバー向けのシンプルなタスク管理ア�
 
 Spring Boot + Thymeleaf + H2 Database の構成で動作する学習用 Web アプリです。
 
-チャットGPTに上司としてタスクを投げてもらい作成しました。
+チャットGPTに上司としてを投げてもらい作成しました。
 
 ![Task Mail](./images/タスクメール.png)
 
@@ -23,8 +26,8 @@ Spring Boot + Thymeleaf + H2 Database の構成で動作する学習用 Web ア�
 - ステータス（未着手 / 進行中 / 完了）の管理
 - 担当者（Member）との紐付け
 
-![Task Mail](./images/タスク登録.png)
-![Task Mail](./images/タスク一覧.png)
+![タスク登録画面](./images/タスク登録.png)
+![タスク一覧画面](./images/タスク一覧.png)
 
 ### メンバー管理
 - メンバー一覧
@@ -32,8 +35,8 @@ Spring Boot + Thymeleaf + H2 Database の構成で動作する学習用 Web ア�
 - メンバー編集
 - メンバー削除
 
-![Task Mail](./images/メンバー一覧.png)
-![Task Mail](./images/メンバー登録.png)
+![メンバー一覧画面](./images/メンバー一覧.png)
+![メンバー登録画面](./images/メンバー登録.png)
 
 ---
 
@@ -52,7 +55,6 @@ Spring Boot + Thymeleaf + H2 Database の構成で動作する学習用 Web ア�
 #### 1 Clone
 
 ```bash
-
 git clone https://github.com/yourname/TaskManager.git
 cd TaskManager
 ```
@@ -61,14 +63,12 @@ cd TaskManager
 #### 2 Run
 
 ``` bash
-
 ./mvnw spring-boot:run
 ```
 
 #### 3 Access
 
 ``` bash
-
 http://localhost:8080/tasks
 ```
 ---
