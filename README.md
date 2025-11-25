@@ -48,7 +48,7 @@ Spring Boot + Thymeleaf + H2 Database の構成で動作する学習用 Web ア�
 
 ## 技術スタック
 
-- **Spring Boot 3.5.7**
+- **Spring Boot 3.5.8**
 - **Thymeleaf**
 - **H2 Database**
 - **Spring Data JPA / Hibernate**
