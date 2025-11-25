@@ -1,6 +1,12 @@
 # TaskManager　— タスク管理ミニアプリ
 ![Java](https://img.shields.io/badge/Java-17-orange)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.7-brightgreen)
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-3.1.2-blue)
+![H2 Database](https://img.shields.io/badge/H2-Database-lightgrey)
+![JPA](https://img.shields.io/badge/Spring%20Data%20JPA-3.x-yellowgreen)
+![Hibernate](https://img.shields.io/badge/Hibernate-6.x-red)
+![Maven](https://img.shields.io/badge/Maven-3.9.0-C71A36)
+
 
 
 ## はじめに

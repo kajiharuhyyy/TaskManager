@@ -32,6 +32,7 @@ public class Member {
 	@Column(length = 255)
 	private String email;
 	
+	@Builder.Default
 	@Column(nullable = false)
 	private boolean active = true;
 
