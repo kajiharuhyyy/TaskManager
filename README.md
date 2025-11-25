@@ -41,3 +41,52 @@ Spring Boot + Thymeleaf + H2 Database の構成で動作する学習用 Web ア�
 - **Java17**
 
 ---
+
+### セットアップ
+#### 1 Clone
+
+```bash
+
+git clone https://github.com/yourname/TaskManager.git
+cd TaskManager
+```
+
+
+#### 2 Run
+
+``` bash
+
+./mvnw spring-boot:run
+```
+
+#### 3 Access
+
+``` bash
+
+http://localhost:8080/tasks
+```
+---
+
+## 学習したこと
+
+- Spring MVC（Controller / Form / View）の一連の流れ
+- CRUD 実装の基礎
+- Bean Validation による入力チェック
+- 多対一リレーション（Task → Member）
+- H2 データ初期化（schema.sql / data.sql）
+- Thymeleaf のフォームバインディング理解
+
+---
+
+## 今後の拡張予定
+
+- ログイン・認可機能（Spring Security）
+- タスク検索（担当者 / ステータス）
+- 作業時間レポート
+- API 化（React フロント版）
+- デプロイ（Render / Railway / AWS）
+
+## 作者
+**梶野　悠久**
+
+
