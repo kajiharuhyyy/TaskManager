@@ -38,7 +38,7 @@ public class TaskController {
 		model.addAttribute("members", memberRepository.findAll());
 		model.addAttribute("statuses", TaskStatus.values());
 		return "tasks/new";
-	}
+	} // 新規作成画面を表示するためのメソッド
 	
 	@PostMapping("/tasks")
 	public String createTask(@ModelAttribute //フォームの入力値を Java のオブジェクトに自動で詰める仕組み
@@ -49,7 +49,7 @@ public class TaskController {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("members", memberRepository.findAll()); //再表示のためにメンバーリストを追加
 			model.addAttribute("statuses", TaskStatus.values()); //再表示のためにステータスリストを追加
-			return "tasks/new";
+			return "tasks/new";  // バリデーションエラーがある場合、新規作成画面を再表示
 		}
 		
 		Member assignee = memberRepository.findById(taskForm.getAssigneeId())
@@ -109,7 +109,7 @@ public class TaskController {
 			model.addAttribute("members", memberRepository.findAll());
 			model.addAttribute("statuses", TaskStatus.values());
 			return "tasks/edit";
-		}
+		} // バリデーションエラーがある場合、編集画面を再表示
 	
 		Task task = taskRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid task ID: " + id));
@@ -131,11 +131,11 @@ public class TaskController {
 	@PostMapping("/tasks/{id}/delete")
 	public String deleteTask(@PathVariable Long id) {
 		taskRepository.findById(id)
-			.orElseThrow(() -> new IllegalArgumentException("Invalid task ID: " + id));
+			.orElseThrow(() -> new IllegalArgumentException("Invalid task ID: " + id)); // タスクが存在するか確認
 		
-		taskRepository.deleteById(id);
+		taskRepository.deleteById(id); // タスクを削除
 		
-		System.out.println("** deletedTask 呼ばれたid=" + id);
+		System.out.println("** deletedTask 呼ばれたid=" + id); // デバッグ用出力
 		
 		return "redirect:/tasks";
 	}

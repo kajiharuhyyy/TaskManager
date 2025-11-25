@@ -11,9 +11,9 @@ import com.example.demo.domain.TaskStatus;
 
 public interface TaskRepository  extends JpaRepository<Task, Long> {
 	
-	List<Task> findByStatus(TaskStatus status);
+	List<Task> findByStatus(TaskStatus status); // 追加
 	
-	List<Task>findByAssignee(Member assigneer);
+	List<Task>findByAssignee(Member assigneer); // 追加
 	
-	List<Task> findByAssigneeAndStatus(Member assignee, TaskStatus status);
-}
+	List<Task> findByAssigneeAndStatus(Member assignee, TaskStatus status); // 追加
+} 

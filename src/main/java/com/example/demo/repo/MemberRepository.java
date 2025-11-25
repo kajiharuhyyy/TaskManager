@@ -8,6 +8,6 @@ import com.example.demo.domain.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 	
-	Optional<Member> findByName(String name);
+	Optional<Member> findByName(String name); // 追加
 
-}
+} 
